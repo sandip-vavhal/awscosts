@@ -4,6 +4,10 @@ class AWSCosts::ElasticIPs
     @data= data
   end
 
+  def data
+    @data
+  end
+
   def price_one
     @data['oneEIP']
   end

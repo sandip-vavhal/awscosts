@@ -4,6 +4,10 @@ class AWSCosts::ELB
     @data= data
   end
 
+  def data
+    @data
+  end
+
   def price_per_hour
     @data['perELBHour']
   end

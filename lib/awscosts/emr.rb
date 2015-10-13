@@ -18,7 +18,11 @@ class AWSCosts::EMR
                      'hiIOODI.xxxxl' => 'hi1.4xlarge' }
 
   def initialize data
-    @data= data
+    @data = data
+  end
+
+  def data
+    @data
   end
 
   def ec2_price size=nil
