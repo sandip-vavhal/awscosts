@@ -24,6 +24,8 @@ class AWSCosts::EC2
     'sa-east-1' => "sa-east-1"
   }
 
+  EBS_RAW_MAPPING = %w(us-east-1 us-west-1 eu-west-1 ap-southeast-1 ap-southeast-2 ap-northeast-1)
+
   def initialize region
     @region = region
   end
@@ -45,7 +47,11 @@ class AWSCosts::EC2
   end
 
   def ebs
-    AWSCosts::EBS.fetch(REGION_MAPPING[self.region.name])
+    if EBS_RAW_MAPPING.include?(region.name)
+      AWSCosts::EBS.fetch(region.name)
+    else
+      AWSCosts::EBS.fetch(REGION_MAPPING[self.region.name])
+    end
   end
 
   def ebs_optimized
