@@ -47,8 +47,8 @@ class AWSCosts::EC2
   end
 
   def ebs
-    if EBS_RAW_MAPPING.include?(region.name)
-      AWSCosts::EBS.fetch(region.name)
+    if EBS_RAW_MAPPING.include?(self.region.name)
+      AWSCosts::EBS.fetch(self.region.name)
     else
       AWSCosts::EBS.fetch(REGION_MAPPING[self.region.name])
     end
