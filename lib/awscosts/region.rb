@@ -33,7 +33,7 @@ class AWSCosts::Region
   end
 
   def rds
-    AWSCosts::Rds.new(self.name)
+    AWSCosts::Rds.new(self)
   end
 
   private
