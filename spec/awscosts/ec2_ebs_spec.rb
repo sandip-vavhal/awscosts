@@ -5,6 +5,12 @@ describe AWSCosts::EBS do
 
   AWSCosts::Region::SUPPORTED.keys.each do |region|
     context "in the region of #{region}" do
+
+    if AWSCosts::EC2::EBS_RAW_MAPPING.include?(region)
+      @region = region
+    else
+      @region = AWSCosts::EC2::REGION_MAPPING[region]
+    end
       subject { AWSCosts.region(region).ec2.ebs}
 
       ['Amazon EBS General Purpose (SSD) volumes',

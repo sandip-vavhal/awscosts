@@ -32,6 +32,10 @@ class AWSCosts::Region
     AWSCosts::S3.new(self)
   end
 
+  def rds
+    AWSCosts::Rds.new(self)
+  end
+
   private
   def initialize name
     @name = name
