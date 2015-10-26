@@ -1,7 +1,8 @@
 require 'awscosts/rds'
 
 class AWSCosts::RDSOnDemand
-
+  
+  MSSQL_ENGINE_MAP = %w(sqlserver_ex sqlserver_web sqlserver_se)
 
   TYPE_URL = {
     new: {
@@ -16,6 +17,15 @@ class AWSCosts::RDSOnDemand
       oracle: {
         standard: 'pricing-li-standard-deployments',
         multi_az: 'pricing-li-multiAZ-deployments'
+      },
+      sqlserver_ex: {
+        standard: 'sqlserver-li-ex-ondemand'
+      },
+      sqlserver_web: {
+        standard: 'sqlserver-li-web-ondemand'
+      },
+      sqlserver_se: {
+        standard: 'sqlserver-li-se-ondemand'
       }
     },
     old: {
@@ -23,7 +33,7 @@ class AWSCosts::RDSOnDemand
         standard: 'pricing-standard-deployments',
         multi_az: 'pricing-multiAZ-deployments'
       },
-      postgres: {
+      postgresql: {
         standard: 'pricing-standard-deployments',
         multi_az: 'pricing-multiAZ-deployments'
 
@@ -31,6 +41,48 @@ class AWSCosts::RDSOnDemand
       oracle: {
         standard: 'pricing-li-standard-deployments',
         multi_az: 'pricing-li-multiAZ-deployments'
+      },
+      sqlserver_ex: {
+        standard: 'sqlserver-li-ex-ondemand'
+      },
+      sqlserver_web: {
+        standard: 'sqlserver-li-web-ondemand'
+      },
+      sqlserver_se: {
+        standard: 'sqlserver-li-se-ondemand'
+      }
+    }
+  }
+
+  BYOL_TYPE_URL = {
+    new: {
+      oracle: {
+        standard: 'pricing-byol-standard-deployments',
+        multi_az: 'pricing-byol-multiAZ-deployments'
+      },
+      sqlserver_ex: {
+        standard: 'sqlserver-byol-ondemand'
+      },
+      sqlserver_web: {
+        standard: 'sqlserver-byol-ondemand'
+      },
+      sqlserver_se: {
+        standard: 'sqlserver-byol-ondemand'
+      }
+    },
+    old: {
+      oracle: {
+        standard: 'pricing-byol-standard-deployments',
+        multi_az: 'pricing-byol-multiAZ-deployments'
+      },
+      sqlserver_ex: {
+        standard: 'sqlserver-byol-ondemand'
+      },
+      sqlserver_web: {
+        standard: 'sqlserver-byol-ondemand'
+      },
+      sqlserver_se: {
+        standard: 'sqlserver-byol-ondemand'
       }
     }
   }
@@ -43,19 +95,29 @@ class AWSCosts::RDSOnDemand
     @data
   end
 
-  def self.fetch engine, version, type, region
+  def self.fetch engine, version, type, byol, region
+  #engine - mysql/postgres/oracle/sqlserver, #version - new/old, type - standard/multi_az, byol - true/false
+
+    mapped_engine = MSSQL_ENGINE_MAP.include?(engine) ? 'sqlserver' : engine
     result = {}
-    if version == "new"
-      uri_type = "/pricing/1/rds/#{engine}/#{TYPE_URL[version.to_sym][engine.to_sym][type.to_sym]}.min.js"
+    if (version == "new" && !byol)
+      uri_type = "/pricing/1/rds/#{mapped_engine}/#{TYPE_URL[version.to_sym][engine.to_sym][type.to_sym]}.min.js"
+    elsif (version == "old" && !byol)
+      uri_type = "/pricing/1/rds/#{mapped_engine}/previous-generation/#{TYPE_URL[version.to_sym][engine.to_sym][type.to_sym]}.min.js"
+    elsif (version == "new" && byol)
+      uri_type = "/pricing/1/rds/#{mapped_engine}/#{BYOL_TYPE_URL[version.to_sym][engine.to_sym][type.to_sym]}.min.js"
+    elsif (version == "old" && byol)
+      uri_type = "/pricing/1/rds/#{mapped_engine}/previous-generation/#{BYOL_TYPE_URL[version.to_sym][engine.to_sym][type.to_sym]}.min.js"
     else
-      uri_type = "/pricing/1/rds/#{engine}/previous-generation/#{TYPE_URL[version.to_sym][engine.to_sym][type.to_sym]}.min.js"
+      raise "Engine #{mapped_engine} or version #{version} or type #{type} not found"
     end
+
     AWSCosts::Cache.get_jsonp(uri_type) do |data|
       data['config']['regions'].each do |r|
         result[r['region']] ||= {}
-        r['types'].each do |type|
-          type['tiers'].each do |tier|
-            price_name_map = {tier['name'] => tier['prices']['USD'].to_f}
+        r['types'].each do |type_t|
+          type_t['tiers'].each do |tier|
+            price_name_map = { tier['name'] => tier['prices']['USD'].to_f }
             result[r['region']].merge!(price_name_map)
           end
         end
@@ -64,4 +126,3 @@ class AWSCosts::RDSOnDemand
     self.new(result[region])
   end
 end
-
