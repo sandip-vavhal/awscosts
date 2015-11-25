@@ -1,8 +1,7 @@
 require 'awscosts/rds'
 
 class AWSCosts::RDSOnDemand
-  
-  MSSQL_ENGINE_MAP = %w(sqlserver_ex sqlserver_web sqlserver_se)
+  MSSQL_ENGINE_MAP = %w(sqlserver_ex sqlserver_web sqlserver_se sqlserver_ee)
 
   TYPE_URL = {
     new: {
@@ -25,7 +24,12 @@ class AWSCosts::RDSOnDemand
         standard: 'sqlserver-li-web-ondemand'
       },
       sqlserver_se: {
-        standard: 'sqlserver-li-se-ondemand'
+        standard: 'sqlserver-li-se-ondemand',
+        multi_az: 'sqlserver-li-se-ondemand-maz'
+      },
+      sqlserver_ee: {
+        standard: 'sqlserver-li-ee-ondemand',
+        multi_az: 'sqlserver-li-ee-ondemand-maz'
       }
     },
     old: {
@@ -49,7 +53,8 @@ class AWSCosts::RDSOnDemand
         standard: 'sqlserver-li-web-ondemand'
       },
       sqlserver_se: {
-        standard: 'sqlserver-li-se-ondemand'
+        standard: 'sqlserver-li-se-ondemand',
+        multi_az: 'sqlserver-li-se-ondemand-maz'
       }
     }
   }
@@ -61,13 +66,20 @@ class AWSCosts::RDSOnDemand
         multi_az: 'pricing-byol-multiAZ-deployments'
       },
       sqlserver_ex: {
-        standard: 'sqlserver-byol-ondemand'
+        standard: 'sqlserver-byol-ondemand',
+        multi_az: 'sqlserver-byol-ondemand-maz'
       },
       sqlserver_web: {
-        standard: 'sqlserver-byol-ondemand'
+        standard: 'sqlserver-byol-ondemand',
+        multi_az: 'sqlserver-byol-ondemand-maz'
       },
       sqlserver_se: {
-        standard: 'sqlserver-byol-ondemand'
+        standard: 'sqlserver-byol-ondemand',
+        multi_az: 'sqlserver-byol-ondemand-maz'
+      },
+      sqlserver_ee: {
+        standard: 'sqlserver-byol-ondemand',
+        multi_az: 'sqlserver-byol-ondemand-maz'
       }
     },
     old: {
@@ -76,13 +88,20 @@ class AWSCosts::RDSOnDemand
         multi_az: 'pricing-byol-multiAZ-deployments'
       },
       sqlserver_ex: {
-        standard: 'sqlserver-byol-ondemand'
+        standard: 'sqlserver-byol-ondemand',
+        multi_az: 'sqlserver-byol-ondemand-maz'
       },
       sqlserver_web: {
-        standard: 'sqlserver-byol-ondemand'
+        standard: 'sqlserver-byol-ondemand',
+        multi_az: 'sqlserver-byol-ondemand-maz'
+      },
+      sqlserver_ee: {
+        standard: 'sqlserver-byol-ondemand',
+        multi_az: 'sqlserver-byol-ondemand-maz'
       },
       sqlserver_se: {
-        standard: 'sqlserver-byol-ondemand'
+        standard: 'sqlserver-byol-ondemand',
+        multi_az: 'sqlserver-byol-ondemand-maz'
       }
     }
   }
