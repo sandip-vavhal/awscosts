@@ -59,7 +59,7 @@ class AWSCosts::EC2
   end
 
   def elastic_ips
-    AWSCosts::ElasticIPs.fetch(REGION_MAPPING[self.region.name])
+    AWSCosts::ElasticIPs.fetch(self.region.name)
   end
 end
 
