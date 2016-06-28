@@ -12,7 +12,9 @@ class AWSCosts::Region
     'ap-southeast-1' => { :full_name => 'Asia Pacific (Singapore)', :price_mapping => 'ap-southeast-1', :emr_mapping => 'apac-sin' },
     'ap-southeast-2' => { :full_name => 'Asia Pacific (Sydney)', :price_mapping => 'ap-southeast-2', :emr_mapping => 'apac-syd' },
     'ap-northeast-1' => { :full_name => 'Asia Pacific (Tokyo)', :price_mapping => 'ap-northeast-1', :emr_mapping => 'apac-tokyo' },
-    'sa-east-1' => { :full_name => 'South America (Sao Paulo)', :price_mapping => 'sa-east-1', :emr_mapping => 'sa-east-1' }
+    'sa-east-1' => { :full_name => 'South America (Sao Paulo)', :price_mapping => 'sa-east-1', :emr_mapping => 'sa-east-1' },
+    'ap-northeast-2' => { :full_name => 'Asia Pacific (Seoul)', :price_mapping => 'ap-northeast-2', :emr_mapping => 'ap-northeast-2' },
+    'ap-south-1' => { :full_name => 'Asia Pacific (Mumbai)', :price_mapping => 'ap-south-1', :emr_mapping => 'ap-south-1' }
   }
 
   def self.find name
