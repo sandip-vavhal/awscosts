@@ -16,7 +16,7 @@ class AWSCosts::Rds
        'ap-southeast-1' => "ap-southeast-1",
        'ap-southeast-2' =>"ap-southeast-2",
        'ap-northeast-1' =>"ap-northeast-1",
-       'sa-east-1' => "sa-east-1"
+       'sa-east-1' => "sa-east-1",
        'ap-northeast-2' => "ap-northeast-2",
        'ap-south-1' => "ap-south-1"
   }
@@ -30,7 +30,7 @@ class AWSCosts::Rds
     'ap-southeast-1' => "apac-sin",
     'ap-southeast-2' =>"apac-syd",
     'ap-northeast-1' =>"apac-tokyo",
-    'sa-east-1' => "sa-east-1"
+    'sa-east-1' => "sa-east-1",
     'ap-northeast-2' => "ap-northeast-2",
     'ap-south-1' => "ap-south-1"
  }
