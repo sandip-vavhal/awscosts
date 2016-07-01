@@ -17,6 +17,8 @@ class AWSCosts::Rds
        'ap-southeast-2' =>"ap-southeast-2",
        'ap-northeast-1' =>"ap-northeast-1",
        'sa-east-1' => "sa-east-1"
+       'ap-northeast-2' => "ap-northeast-2",
+       'ap-south-1' => "ap-south-1"
   }
 
   OTHER_REGION_MAPPING = {
@@ -29,6 +31,8 @@ class AWSCosts::Rds
     'ap-southeast-2' =>"apac-syd",
     'ap-northeast-1' =>"apac-tokyo",
     'sa-east-1' => "sa-east-1"
+    'ap-northeast-2' => "ap-northeast-2",
+    'ap-south-1' => "ap-south-1"
  }
 
 
