@@ -17,7 +17,7 @@ class AWSCosts::ELB
   end
 
   def self.fetch region
-    transformed = AWSCosts::Cache.get_jsonp('/pricing/1/ec2/pricing-elb.min.js') do |data|
+    transformed = AWSCosts::Cache.get_jsonp('/pricing/1/elasticloadbalancer/pricing-elb.min.js') do |data|
       result = {}
       data['config']['regions'].each do |r|
         container = {}
