@@ -18,6 +18,11 @@ class AWSCosts::EBS
       end
       result
     end
+    AWSCosts::Cache.get_jsonp('/pricing/1/ebs/pricing-ebs-previous-generation.min.js') do |data|
+      data['config']['regions'].each do |r|
+        transformed[r['region']] = transformed[r['region']] + r['types']
+      end
+    end
     self.new(transformed[region])
   end
 
