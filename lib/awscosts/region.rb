@@ -17,7 +17,9 @@ class AWSCosts::Region
     'ap-south-1' => { :full_name => 'Asia Pacific (Mumbai)', :price_mapping => 'ap-south-1', :emr_mapping => 'ap-south-1' },
     'us-east-2' => { :full_name => 'US East (Ohio)', :price_mapping => 'us-east-2', :emr_mapping => 'us-east-2' },
     'ca-central-1' => { :full_name => 'Canada (Central)', :price_mapping => 'ca-central-1', :emr_mapping => 'ca-central-1' },
-    'eu-west-2' => { :full_name => 'EU (London)', :price_mapping => 'eu-west-2', :emr_mapping => 'eu-west-2' }
+    'eu-west-2' => { :full_name => 'EU (London)', :price_mapping => 'eu-west-2', :emr_mapping => 'eu-west-2' },
+    'cn-north-1' => { :full_name => 'China (Beijing)', :price_mapping => 'cn-north-1', :emr_mapping => 'cn-north-1' },
+    'us-gov-west-1' => { :full_name => 'AWS GovCloud (US)', :price_mapping => 'us-gov-west-1', :emr_mapping => 'us-gov-west-1' }
   }
 
   def self.find name
