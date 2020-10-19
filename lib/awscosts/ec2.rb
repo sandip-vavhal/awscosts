@@ -44,6 +44,7 @@ class AWSCosts::EC2
 
   def on_demand(type)
     raise ArgumentError.new("Unknown platform: #{type}") if TYPES[type].nil?
+    puts "=====Region Name Inspect===#{self.inspect}"
     AWSCosts::EC2OnDemand.fetch(TYPES[type], self.region.name)
   end
 

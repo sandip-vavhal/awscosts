@@ -33,7 +33,9 @@ class AWSCosts::EC2OnDemand
     result = {}
     ['/pricing/1/ec2/%s-od.min.js', '/pricing/1/ec2/previous-generation/%s-od.min.js'].each do |uri|
       AWSCosts::Cache.get_jsonp(uri % type) do |data|
+        puts "====DATA====#{data.inspect}===="
         data['config']['regions'].each do |r|
+          puts "=======Region=====#{r.inspect}===="
           result[r['region']] ||= {}
           platforms = result[r['region']]
           r['instanceTypes'].each do |instance_type|
