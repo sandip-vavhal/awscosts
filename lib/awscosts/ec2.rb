@@ -26,7 +26,14 @@ class AWSCosts::EC2
     'ap-south-1' => "ap-south-1",
     'eu-west-2' => "eu-west-2",
     'us-east-2' => "us-east-2",
-    'ca-central-1' => "ca-central-1"
+    'ca-central-1' => "ca-central-1",
+    'af-south-1' => "af-south-1",
+    'ap-east-1'  => "ap-east-1",
+    'eu-south-1' => "eu-south-1",
+    'eu-west-3' => "eu-west-3",
+    'eu-north-1' => "eu-north-1",
+    'me-south-1' => "me-south-1",
+    'cn-north-1' => "cn-north-1"
   }
 
   EBS_RAW_MAPPING = %w(us-east-1 us-west-1 eu-west-1 ap-southeast-1 ap-southeast-2 ap-northeast-1)

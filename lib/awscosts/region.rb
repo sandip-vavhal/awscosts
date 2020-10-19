@@ -19,7 +19,14 @@ class AWSCosts::Region
     'ca-central-1' => { :full_name => 'Canada (Central)', :price_mapping => 'ca-central-1', :emr_mapping => 'ca-central-1' },
     'eu-west-2' => { :full_name => 'EU (London)', :price_mapping => 'eu-west-2', :emr_mapping => 'eu-west-2' },
     'cn-north-1' => { :full_name => 'China (Beijing)', :price_mapping => 'cn-north-1', :emr_mapping => 'cn-north-1' },
-    'us-gov-west-1' => { :full_name => 'AWS GovCloud (US)', :price_mapping => 'us-gov-west-1', :emr_mapping => 'us-gov-west-1' }
+    'us-gov-west-1' => { :full_name => 'AWS GovCloud (US)', :price_mapping => 'us-gov-west-1', :emr_mapping => 'us-gov-west-1' },
+    'af-south-1' => { :full_name => 'Africa (Cape Town)', :price_mapping => 'af-south-1', :emr_mapping => 'af-south-1' },
+    'ap-east-1' => { :full_name => 'Asia Pacific (Hong Kong)', :price_mapping => 'ap-east-1', :emr_mapping => 'ap-east-1' },
+    'eu-south-1' => { :full_name => 'Europe (Milan)', :price_mapping => 'eu-south-1', :emr_mapping => 'eu-south-1' },
+    'eu-west-3' => { :full_name => 'Europe (Paris)', :price_mapping => 'eu-west-3', :emr_mapping => 'eu-west-3' },
+    'eu-north-1' => { :full_name => 'Europe (Stockholm)', :price_mapping => 'eu-north-1', :emr_mapping => 'eu-north-1' },
+    'me-south-1' => { :full_name => 'Middle East (Bahrain)', :price_mapping => 'me-south-1', :emr_mapping => 'me-south-1' }
+
   }
 
   def self.find name
